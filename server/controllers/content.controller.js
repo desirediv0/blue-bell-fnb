@@ -206,9 +206,9 @@ const getAboutPageContent = asyncHandler(async (req, res) => {
       new ApiResponsive(200, {
         title: "About Us",
         content:
-          "<h2>Our Story</h2><p>Founded in 2015, bluebellfnb started with a simple mission: to provide high-quality nutritional supplements that actually work, backed by science and free from harmful additives.</p><p>Our founder, Rahul Sharma, was frustrated with the lack of transparency in the supplements industry. After struggling to find products he could trust, he decided to create his own solution.</p><p>Today, we've grown into one of India's most trusted supplement brands, with a commitment to quality, transparency, and customer satisfaction that remains as strong as ever.</p>",
-        metaTitle: "About Us | bluebellfnb",
-        metaDescription: "Learn more about bluebellfnb and our mission.",
+          "<h2>Our Story</h2><p>Founded in 1998, Blue Bell FNB started with a simple mission: to provide high-quality, farm-fresh dairy products that are pure, nutritious, and free from harmful additives.</p><p>Our founder was dedicated to preserving the traditional goodness of dairy while modernizing the supply chain. We believe in transparency and the farm-to-table philosophy.</p><p>Today, we've grown into one of the region's most trusted dairy brands, with a commitment to quality, freshness, and customer satisfaction that remains as strong as ever.</p>",
+        metaTitle: "About Us | Blue Bell FNB",
+        metaDescription: "Learn more about Blue Bell FNB and our farm-fresh dairy mission.",
       })
     );
   } catch (error) {
@@ -236,9 +236,9 @@ const getShippingPolicy = asyncHandler(async (req, res) => {
       new ApiResponsive(200, {
         title: "Shipping Policy",
         content:
-          "<h2>Delivery Information</h2><p>At bluebellfnb, we strive to deliver your orders as quickly and efficiently as possible. We understand that when you order nutritional supplements, you want them right away. That's why we've partnered with reliable courier services to ensure your products reach you in perfect condition.</p><h2>Shipping Fees</h2><ul><li><strong>Free Shipping:</strong> On all orders above ₹999</li><li><strong>Standard Shipping:</strong> ₹99 for orders below ₹999</li><li><strong>Express Shipping:</strong> ₹199 (delivery within 24-48 hours in select metro cities)</li></ul>",
-        metaTitle: "Shipping Policy | bluebellfnb",
-        metaDescription: "Our shipping policies and delivery information.",
+          "<h2>Delivery Information</h2><p>At Blue Bell FNB, we strive to deliver your dairy products as quickly and freshly as possible. We understand the importance of temperature-controlled logistics for maintaining nutritional value. Our fleet ensures that your farm-fresh milk and dairy reach you in perfect condition.</p><h2>Shipping Fees</h2><ul><li><strong>Free Shipping:</strong> On all orders above ₹999</li><li><strong>Standard Shipping:</strong> ₹99 for orders below ₹999</li><li><strong>Fresh Morning Slots:</strong> Available in select areas for daily essentials.</li></ul>",
+        metaTitle: "Shipping Policy | Blue Bell FNB",
+        metaDescription: "Our fresh delivery policies and shipping information.",
       })
     );
   } catch (error) {
@@ -293,17 +293,17 @@ const getFaqs = asyncHandler(async (req, res) => {
           },
           {
             id: "3",
-            question: "Are your supplements safe?",
+            question: "Are your dairy products pure?",
             answer:
-              "<p>Yes, all our supplements are manufactured in FDA-approved facilities and undergo rigorous quality testing. We prioritize safety and efficacy in all our products.</p>",
+              "<p>Yes, all our products are sourced from our verified farms and undergo rigorous quality testing for purity and nutrition. We prioritize freshness and quality in all our products.</p>",
             category: "Products",
             order: 1,
             isPublished: true,
           },
         ],
-        metaTitle: "Frequently Asked Questions | bluebellfnb",
+        metaTitle: "Frequently Asked Questions | Blue Bell FNB",
         metaDescription:
-          "Find answers to common questions about our products and services.",
+          "Find answers to common questions about our fresh dairy products.",
       })
     );
   } catch (error) {

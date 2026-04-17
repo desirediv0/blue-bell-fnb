@@ -199,7 +199,7 @@ export default function HomePageContent() {
 
       {/* ========== NUTRITION SECTIONS START ========== */}
 
-      {/* PROTEIN */}
+      {/* PROTEIN -> FRESH MILK & CREAM */}
       {renderSection(
         "protein",
         "FRESH MILK & CREAM",
@@ -207,7 +207,7 @@ export default function HomePageContent() {
         "bg-white"
       )}
 
-      {/* GAINERS */}
+      {/* GAINERS -> BUTTER & GHEE */}
       {renderSection(
         "gainer",
         "BUTTER & GHEE",
@@ -215,7 +215,7 @@ export default function HomePageContent() {
         "bg-gray-50"
       )}
 
-      {/* PREWORKOUT */}
+      {/* PREWORKOUT -> CHEESE SELECTION */}
       {renderSection(
         "preWorkout",
         "CHEESE SELECTION",
@@ -223,7 +223,7 @@ export default function HomePageContent() {
         "bg-white"
       )}
 
-      {/* POSTWORKOUT */}
+      {/* POSTWORKOUT -> ORGANIC YOGURT */}
       {renderSection(
         "postWorkout",
         "ORGANIC YOGURT",
@@ -231,68 +231,12 @@ export default function HomePageContent() {
         "bg-gray-50"
       )}
 
-      {/* BCAA / AMINO */}
+      {/* BCAA / AMINO -> PANEER & TOFU */}
       {renderSection(
         "amino",
         "PANEER & TOFU",
         "Fresh, soft paneer and high-protein tofu alternatives",
         "bg-white"
-      )}
-
-      {/* CREATINE */}
-      {renderSection(
-        "creatine",
-        "CREATINE BEST SELLERS",
-        "Pure monohydrate for power, strength & performance",
-        "bg-gray-50"
-      )}
-
-      {/* FAT BURNERS */}
-      {renderSection(
-        "fatBurner",
-        "FAT BURNERS",
-        "Thermogenic fat burners for faster cutting",
-        "bg-white"
-      )}
-
-      {/* VITAMINS */}
-      {renderSection(
-        "vitamin",
-        "VITAMINS & MULTIVITAMINS",
-        "For strong immunity, energy & daily wellness",
-        "bg-gray-50"
-      )}
-
-      {/* SNACKS */}
-      {renderSection(
-        "snack",
-        "HEALTHY SNACKS",
-        "High-protein snacks for clean eating",
-        "bg-white"
-      )}
-
-      {/* DRINKS */}
-      {renderSection(
-        "drink",
-        "ENERGY & HYDRATION DRINKS",
-        "Stay hydrated and boost stamina",
-        "bg-gray-50"
-      )}
-
-      {/* COMBO PACKS */}
-      {renderSection(
-        "combo",
-        "COMBO PACKS & STACKS",
-        "Best value stacks & powerful supplement bundles",
-        "bg-white"
-      )}
-
-      {/* ELITE COLLECTION */}
-      {renderSection(
-        "elite",
-        "ELITE ATHLETE COLLECTION",
-        "High performance supplements for professional athletes",
-        "bg-gray-50"
       )}
 
       {/* HOT BRANDS */}

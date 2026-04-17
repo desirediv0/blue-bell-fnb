@@ -277,11 +277,12 @@ const INDUSTRY_PRESETS = {
       { name: "Color", inputType: "select" },
     ],
   },
-  supplements: {
-    name: "Supplements",
+  dairy: {
+    name: "Dairy Products",
     attributes: [
-      { name: "Weight", inputType: "select" },
-      { name: "Flavor", inputType: "select" },
+      { name: "Volume (ml/L)", inputType: "select" },
+      { name: "Fat Content (%)", inputType: "select" },
+      { name: "Shelf Life", inputType: "select" },
     ],
   },
   medicine: {

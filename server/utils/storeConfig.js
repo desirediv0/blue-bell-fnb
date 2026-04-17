@@ -7,38 +7,38 @@
 export const getStoreConfig = () => {
   return {
     // Store Information
-    storeName: process.env.STORE_NAME || "Blue Bell fnb",
-    storeEmail: process.env.STORE_EMAIL || "store@example.com",
-    storePhone: process.env.STORE_PHONE || "+1234567890",
+    storeName: process.env.STORE_NAME || "Blue Bell FNB",
+    storeEmail: process.env.STORE_EMAIL || "admin@bluebellservice.co.in",
+    storePhone: process.env.STORE_PHONE || "+91 7303249605",
     storeAddress:
-      process.env.STORE_ADDRESS || "123 Store Street, City, Country",
+      process.env.STORE_ADDRESS || "Delhi NCR – Uttar Pradesh 201102",
 
     // Store Description/Tagline
-    storeTagline: process.env.STORE_TAGLINE || "Premium Quality Products",
+    storeTagline: process.env.STORE_TAGLINE || "Pure. Fresh. Local.",
     storeDescription:
       process.env.STORE_DESCRIPTION ||
-      "Your trusted source for premium quality products",
+      "Premium dairy products sourced directly from fresh farms since 1998.",
 
     // Email Configuration
-    fromName: process.env.FROM_NAME || process.env.STORE_NAME || "Blue Bell fnb",
+    fromName: process.env.FROM_NAME || process.env.STORE_NAME || "Blue Bell FNB",
     fromEmail:
       process.env.FROM_EMAIL ||
       process.env.STORE_EMAIL ||
       process.env.SMTP_USER ||
-      "store@example.com",
+      "admin@bluebellservice.co.in",
 
     // Website Information
-    websiteUrl: process.env.WEBSITE_URL || "https://yourstore.com",
+    websiteUrl: process.env.WEBSITE_URL || "https://bluebellfnb.com",
     supportEmail:
       process.env.SUPPORT_EMAIL ||
       process.env.STORE_EMAIL ||
-      "Info@bluebellfnb.com",
+      "admin@bluebellservice.co.in",
 
     // Social Media (optional)
-    socialFacebook: process.env.SOCIAL_FACEBOOK || "",
+    socialFacebook: process.env.SOCIAL_FACEBOOK || "https://www.facebook.com/share/1DCsKYB5Uy/?mibextid=wwXIfr",
     socialTwitter: process.env.SOCIAL_TWITTER || "",
-    socialInstagram: process.env.SOCIAL_INSTAGRAM || "",
-    socialYoutube: process.env.SOCIAL_YOUTUBE || "",
+    socialInstagram: process.env.SOCIAL_INSTAGRAM || "https://www.instagram.com/official_bluebellfnb/",
+    socialYoutube: process.env.SOCIAL_YOUTUBE || "https://youtube.com/@bluebellfnbindia?si=ZkkCpU1DEh48NBSe",
   };
 };
 

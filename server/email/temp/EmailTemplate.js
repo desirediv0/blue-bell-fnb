@@ -30,7 +30,7 @@ export const getVerificationTemplate = (
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -61,7 +61,7 @@ export const getVerificationTemplate = (
         .button {
             display: inline-block;
             padding: 15px 35px;
-            background-color: #2563eb;
+            background-color: #1861A0;
             color: #ffffff !important;
             text-decoration: none;
             border-radius: 50px;
@@ -86,7 +86,7 @@ export const getVerificationTemplate = (
             content: '✓';
             position: absolute;
             left: 0;
-            color: #2563eb;
+            color: #1861A0;
             font-weight: bold;
         }
         .footer {
@@ -117,7 +117,7 @@ export const getVerificationTemplate = (
             
             <div class="features">
                 <h3>What you can do after verification:</h3>
-                <div class="feature-item">Shop for premium quality supplements</div>
+                <div class="feature-item">Shop for premium fresh dairy products</div>
                 <div class="feature-item">Track your orders easily</div>
                 <div class="feature-item">Receive exclusive offers and updates</div>
                 <div class="feature-item">Manage your subscription preferences</div>
@@ -150,7 +150,7 @@ export const getEmailOtpTemplate = (
     <style>
         body { font-family: 'Arial', sans-serif; background: #f5f5f5; margin:0; padding:0; color:#1a1a1a; }
         .container { max-width: 600px; margin: 24px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .header { background: linear-gradient(135deg, #2563eb, #1e40af); color: #fff; text-align: center; padding: 32px; }
+        .header { background: linear-gradient(135deg, #1861A0, #111c2b); color: #fff; text-align: center; padding: 32px; }
         .content { padding: 32px; }
         h1 { margin: 0; font-size: 24px; font-weight: 700; }
         p { margin: 0 0 16px; font-size: 16px; color: #333; }
@@ -192,7 +192,7 @@ export const getDeleteTemplate = (deletionLink, storeConfig = null) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Deletion Request - Bansuri Vidya Mandir</title>
+    <title>Account Deletion Request - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -211,7 +211,7 @@ export const getDeleteTemplate = (deletionLink, storeConfig = null) => {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -238,7 +238,7 @@ export const getDeleteTemplate = (deletionLink, storeConfig = null) => {
         .button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
@@ -278,7 +278,7 @@ export const getDeleteTemplate = (deletionLink, storeConfig = null) => {
             content: '➤';
             position: absolute;
             left: 0;
-            color: #ff0000;
+            color: #1861A0;
         }
         .footer {
             text-align: center;
@@ -296,8 +296,8 @@ export const getDeleteTemplate = (deletionLink, storeConfig = null) => {
         </div>
         <div class="content">
             <h2>Account Deletion Request</h2>
-            <p>Dear Valued Student,</p>
-            <p>We've received a request to delete your Bansuri Vidya Mandir account. Before proceeding, we want to ensure this is your intended action, as it will affect your access to classes, learning materials, and progress records.</p>
+            <p>Dear Valued Customer,</p>
+            <p>We've received a request to delete your Blue Bell FNB account. Before proceeding, we want to ensure this is your intended action, as it will affect your access to classes, learning materials, and progress records.</p>
             <p>If you're certain about deleting your account, please click the button below:</p>
             <a href="${deletionLink}" class="button">Confirm Account Deletion</a>
             <div class="warning">
@@ -315,10 +315,10 @@ export const getDeleteTemplate = (deletionLink, storeConfig = null) => {
                     Contact our support team for assistance
                 </div>
             </div>
-            <p>If you didn't request this deletion, please contact our support team immediately at bansurividya@gmail.com.</p>
+            <p>If you didn't request this deletion, please contact our support team immediately at admin@bluebellservice.co.in.</p>
         </div>
         <div class="footer">
-            © ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute<br>
+            © ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products<br>
             This is an automated message. Please do not reply to this email.
         </div>
     </div>
@@ -354,7 +354,7 @@ export const getResetTemplate = (resetLink, storeConfig = null) => {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -381,7 +381,7 @@ export const getResetTemplate = (resetLink, storeConfig = null) => {
         .button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
@@ -436,7 +436,7 @@ export const getFeeReceiptTemplate = (data) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fee Payment Receipt - Bansuri Vidya Mandir</title>
+    <title>Fee Payment Receipt - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -455,7 +455,7 @@ export const getFeeReceiptTemplate = (data) => `
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -482,7 +482,7 @@ export const getFeeReceiptTemplate = (data) => `
         .button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
@@ -521,10 +521,10 @@ export const getFeeReceiptTemplate = (data) => `
     data.date
 ).toLocaleDateString()}</p>
             </div>
-            <p>Please find your receipt attached to this email. We look forward to continuing your musical journey with us.</p>
+            <p>Please find your receipt attached to this email. We look forward to continuing your dairy experience with us.</p>
         </div>
         <div class="footer">
-            © ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute<br>
+            © ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products<br>
             This is an automated message. Please do not reply.
         </div>
     </div>
@@ -538,7 +538,7 @@ export const getFeeNotificationTemplate = (data) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Fee Assignment - Bansuri Vidya Mandir</title>
+    <title>New Fee Assignment - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -555,7 +555,7 @@ export const getFeeNotificationTemplate = (data) => `
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 30px;
@@ -578,13 +578,13 @@ export const getFeeNotificationTemplate = (data) => `
             border-bottom: 1px solid #eee;
         }
         .important {
-            color: #cc0000;
+            color: #111c2b;
             font-weight: bold;
         }
         .btn {
             display: inline-block;
             padding: 12px 25px;
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
@@ -656,7 +656,7 @@ export const getFeeNotificationTemplate = (data) => `
     }/dashboard/fees" class="btn">View Fee Details</a>
         </div>
         <div class="footer">
-            <p>© ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute</p>
+            <p>© ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products</p>
             <p>This is an automated message. Please do not reply to this email.</p>
         </div>
     </div>
@@ -670,7 +670,7 @@ export const getPaymentSuccessTemplate = (data) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful - Bansuri Vidya Mandir</title>
+    <title>Payment Successful - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -771,11 +771,11 @@ export const getPaymentSuccessTemplate = (data) => `
             </div>
 
             <p>Your payment receipt has been attached to this email for your records.</p>
-            <p>Thank you for your prompt payment! We look forward to continuing our musical journey together.</p>
+            <p>Thank you for your prompt payment! We look forward to continuing our dairy experience together.</p>
         </div>
         <div class="footer">
-            <p>© ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute</p>
-            <p>For any queries, please contact our support team at bansurividya@gmail.com</p>
+            <p>© ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products</p>
+            <p>For any queries, please contact our support team at admin@bluebellservice.co.in</p>
         </div>
     </div>
 </body>
@@ -788,7 +788,7 @@ export const getPaymentFailureTemplate = (data) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Failed - Bansuri Vidya Mandir</title>
+    <title>Payment Failed - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -807,7 +807,7 @@ export const getPaymentFailureTemplate = (data) => `
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+            background: linear-gradient(135deg, #111c2b, #dc2626);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -828,7 +828,7 @@ export const getPaymentFailureTemplate = (data) => `
         }
         .retry-button {
             display: inline-block;
-            background: #ef4444;
+            background: #111c2b;
             color: white;
             padding: 12px 25px;
             text-decoration: none;
@@ -881,8 +881,8 @@ export const getPaymentFailureTemplate = (data) => `
             </a>
         </div>
         <div class="footer">
-            <p>© ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute</p>
-            <p>Need help? Contact our support team at bansurividya@gmail.com</p>
+            <p>© ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products</p>
+            <p>Need help? Contact our support team at admin@bluebellservice.co.in</p>
         </div>
     </div>
 </body>
@@ -930,7 +930,7 @@ export const getFeeUpdateTemplate = ({
             <p>If you have any questions about this update, please contact our support team.</p>
         </div>
         <div class="footer">
-            <p>Bansuri Vidya Mandir | Indian Classical Music Institute</p>
+            <p>Blue Bell FNB | Premium Dairy Products</p>
             <small>This is an automated message, please do not reply.</small>
         </div>
     </div>
@@ -944,7 +944,7 @@ export const getCertificateGeneratedTemplate = (data) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate Generated - Bansuri Vidya Mandir</title>
+    <title>Certificate Generated - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -963,7 +963,7 @@ export const getCertificateGeneratedTemplate = (data) => `
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -1004,7 +1004,7 @@ export const getCertificateGeneratedTemplate = (data) => `
         .button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
@@ -1034,16 +1034,16 @@ export const getCertificateGeneratedTemplate = (data) => `
             <h1>Congratulations!</h1>
         </div>
         <div class="content">
-            <h2>Musical Achievement Accomplished</h2>
+            <h2>Pure Quality Achievement</h2>
             <p>Dear ${data.userName},</p>
-            <p>We are delighted to inform you that you have successfully completed the course:</p>
-            <h3 style="color: #cc0000;">${data.courseName}</h3>
+            <p>We are delighted to inform you that you have successfully completed your latest journey with us:</p>
+            <h3 style="color: #111c2b;">${data.courseName}</h3>
             
             <div class="certificate-info">
-                <p><strong>Your certificate of musical excellence has been generated!</strong></p>
+                <p><strong>Your certificate of purity excellence has been generated!</strong></p>
                 <p>Certificate ID: <span class="certificate-id">${data.certificateId
     }</span></p>
-                <p>You can now access and download your certificate from your profile. This marks an important milestone in your musical journey with us.</p>
+                <p>You can now access your quality certificate from your profile. This marks an important milestone in your dairy experience with us.</p>
             </div>
 
             <center>
@@ -1051,10 +1051,10 @@ export const getCertificateGeneratedTemplate = (data) => `
     }/user-profile" class="button">View Certificate</a>
             </center>
 
-            <p>This certificate validates your dedication to Indian classical music and your commitment to learning. Continue on the path of musical excellence!</p>
+            <p>This certificate validates your dedication to quality nutrition and your commitment to purity. Continue on the path of health and excellence!</p>
         </div>
         <div class="footer">
-            © ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute<br>
+            © ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products<br>
             This is an automated message. Please do not reply to this email.
         </div>
     </div>
@@ -1068,7 +1068,7 @@ export const getContactFormTemplate = (data) => `
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Contact Form Submission - Bansuri Vidya Mandir</title>
+    <title>New Contact Form Submission - Blue Bell FNB</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -1087,7 +1087,7 @@ export const getContactFormTemplate = (data) => `
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 30px;
@@ -1165,7 +1165,7 @@ export const getContactFormTemplate = (data) => `
             <p>Please respond to this inquiry about our music programs at your earliest convenience.</p>
         </div>
         <div class="footer">
-            © ${new Date().getFullYear()} Bansuri Vidya Mandir | Indian Classical Music Institute<br>
+            © ${new Date().getFullYear()} Blue Bell FNB | Premium Dairy Products<br>
             This is an automated message from your website contact form.
         </div>
     </div>
@@ -1203,7 +1203,7 @@ export const getOrderConfirmationTemplate = (data, storeConfig = null) => {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #f97316, #ea580c);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 30px;
@@ -1255,7 +1255,7 @@ export const getOrderConfirmationTemplate = (data, storeConfig = null) => {
             margin: 20px 0;
         }
         .order-items th {
-            background-color: #f97316;
+            background-color: #1861A0;
             color: #fff;
             padding: 12px 10px;
             text-align: left;
@@ -1316,7 +1316,7 @@ export const getOrderConfirmationTemplate = (data, storeConfig = null) => {
             color: #1a1a1a;
         }
         .total-row .summary-value {
-            color: #f97316;
+            color: #1861A0;
         }
         .coupon-badge {
             display: inline-block;
@@ -1348,7 +1348,7 @@ export const getOrderConfirmationTemplate = (data, storeConfig = null) => {
         .button {
             display: inline-block;
             padding: 12px 25px;
-            background-color: #f97316;
+            background-color: #1861A0;
             color: #ffffff !important;
             text-decoration: none;
             border-radius: 5px;
@@ -1519,7 +1519,7 @@ export const getPartnerResetTemplate = (resetLink, storeConfig = null) => {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: linear-gradient(135deg, #DE7A3E, #ef4444);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-align: center;
             padding: 40px;
@@ -1546,7 +1546,7 @@ export const getPartnerResetTemplate = (resetLink, storeConfig = null) => {
         .button {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, #DE7A3E, #ef4444);
+            background: linear-gradient(135deg, #1861A0, #111c2b);
             color: #ffffff;
             text-decoration: none;
             border-radius: 50px;
