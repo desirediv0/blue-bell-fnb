@@ -13,6 +13,7 @@ import {
   Zap,
   Users,
   Star,
+  Truck,
 } from "lucide-react";
 
 const translations = {
