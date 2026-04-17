@@ -323,7 +323,7 @@ export default function ProductContent({ slug }) {
         <AlertCircle className="h-8 w-8 text-yellow-500" />
       </div>
       <h2 className="text-xl font-bold text-gray-900 mb-2">Product not found</h2>
-      <p className="text-sm text-gray-500 mb-6">This product doesn't exist or has been removed.</p>
+      <p className="text-sm text-gray-500 mb-6">This product doesn&apos;t exist or has been removed.</p>
       <Link href="/products"
         className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors">
         Browse Products <ChevronRight className="h-4 w-4" />

@@ -52,7 +52,7 @@ export const WhyBuySection = () => {
               From Our Farms.<br />To Your Family.
             </h2>
             <p className="text-sm text-gray-500 max-w-xs md:text-right leading-relaxed">
-              We've been providing premium dairy products since 2009.
+              We&apos;ve been providing premium dairy products since 2009.
               Everything comes from our certified local farms in India.
             </p>
           </div>

@@ -42,7 +42,7 @@ export const SocialMediaSection = () => {
               Follow Us
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-              We're active online.<br />Come find us.
+              We&apos;re active online.<br />Come find us.
             </h2>
           </div>
           <p className="text-sm text-gray-500 max-w-xs md:text-right leading-relaxed">
