@@ -165,7 +165,7 @@ export default function HomePageContent() {
       )}
 
       {/* NEW BRANDS */}
-      <BrandCarousel tag="NEW" title="NEW BRANDS" />
+      <BrandCarousel tag="HOT" title="HOT BRANDS" />
 
       {/* LATEST PRODUCTS */}
       {renderSection(
@@ -192,6 +192,9 @@ export default function HomePageContent() {
       )}
 
             <CategoryGrid />
+
+                 {/* NEW BRANDS */}
+      <BrandCarousel tag="NEW" title="NEW BRANDS" />
 
       {/* NEW ARRIVALS */}
       {renderSection(
@@ -242,9 +245,6 @@ export default function HomePageContent() {
         "Fresh, soft paneer and high-protein tofu alternatives",
         "bg-white"
       )}
-
-      {/* HOT BRANDS */}
-      <BrandCarousel tag="HOT" title="HOT BRANDS" />
     </>
   );
 }

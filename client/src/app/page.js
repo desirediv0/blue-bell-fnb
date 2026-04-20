@@ -28,12 +28,11 @@ export default function Home() {
 
         {/* ── Flash Sale ── */}
         <FlashSaleSection />
-        <BrandCarousel tag="HOT" title="HOT BRANDS" />
+
         {/* ── All Product Sections + HOT BRANDS (client-side, API driven) ── */}
         <HomePageContent />
 
-        {/* ── Bottom Brand Showcase ── */}
-        <BrandCarousel tag="NEW" title="NEW BRANDS" />
+
 
         {/* ── Trust & Social ── */}
         <WhyBuySection />
