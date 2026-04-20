@@ -5,8 +5,10 @@ import { fetchApi } from "@/lib/utils";
 import Headtext from "@/components/ui/headtext";
 import BrandCarousel from "@/components/sections/BrandCarousel";
 import { ProductCard } from "@/components/products/ProductCard";
+import CategoryGrid from "@/components/sections/CategoryGrid";
 import {
   Carousel,
+
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
@@ -188,6 +190,8 @@ export default function HomePageContent() {
         "Our most loved products picked by the community",
         "bg-white"
       )}
+
+            <CategoryGrid />
 
       {/* NEW ARRIVALS */}
       {renderSection(
