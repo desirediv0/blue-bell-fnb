@@ -183,39 +183,41 @@ export default function CategoryPage() {
             {/* Products Section */}
             <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
                 {/* Toolbar */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <div className="text-gray-600 text-sm">
-                        Showing <span className="text-gray-900 font-semibold">{products.length}</span> of <span className="text-gray-900 font-semibold">{pagination.total}</span> products
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                    <div className="text-gray-500 text-sm font-medium">
+                        Showing <span className="text-gray-900 font-bold">{products.length}</span> products found
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-between sm:justify-end gap-3">
                         {/* View Mode */}
-                        <div className="hidden sm:flex items-center bg-white rounded-lg p-1 border border-gray-200">
+                        <div className="flex items-center bg-white rounded-lg p-1 border border-gray-200 shadow-sm">
                             <button
                                 onClick={() => setViewMode("grid")}
                                 className={`p-1.5 rounded transition-colors ${viewMode === "grid" ? "bg-primary text-white" : "text-gray-400 hover:text-gray-600"}`}
+                                title="Grid View"
                             >
                                 <Grid className="w-4 h-4" />
                             </button>
                             <button
                                 onClick={() => setViewMode("list")}
                                 className={`p-1.5 rounded transition-colors ${viewMode === "list" ? "bg-primary text-white" : "text-gray-400 hover:text-gray-600"}`}
+                                title="List View"
                             >
                                 <List className="w-4 h-4" />
                             </button>
                         </div>
 
                         {/* Sort */}
-                        <div className="relative">
+                        <div className="relative flex-1 sm:flex-none">
                             <select
                                 value={sortOption}
                                 onChange={handleSortChange}
-                                className="appearance-none bg-white border border-gray-200 text-gray-700 rounded-lg px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium cursor-pointer"
+                                className="w-full appearance-none bg-white border border-gray-200 text-gray-700 rounded-lg px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm font-medium cursor-pointer shadow-sm"
                             >
                                 <option value="newest">Newest First</option>
                                 <option value="oldest">Oldest First</option>
-                                <option value="name-asc">Name: A to Z</option>
-                                <option value="name-desc">Name: Z to A</option>
+                                <option value="name-asc">A to Z</option>
+                                <option value="name-desc">Z to A</option>
                             </select>
                             <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                         </div>
@@ -239,9 +241,9 @@ export default function CategoryPage() {
                         </Link>
                     </div>
                 ) : (
-                    <div className={`grid gap-4 md:gap-6 ${viewMode === "grid" ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4" : "grid-cols-1"}`}>
+                    <div className={`grid gap-4 md:gap-6 ${viewMode === "list" ? "grid-cols-1 xl:grid-cols-2" : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"}`}>
                         {products.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard key={product.id} product={product} viewMode={viewMode} />
                         ))}
                     </div>
                 )}

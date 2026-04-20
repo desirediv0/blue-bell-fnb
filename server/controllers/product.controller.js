@@ -222,18 +222,7 @@ export const getAllProducts = asyncHandler(async (req, res) => {
         },
       },
     },
-    orderBy: isPriceSort
-      ? [
-          { ourProduct: "desc" },
-          {
-            variants: {
-              _min: {
-                price: order,
-              },
-            },
-          },
-        ]
-      : [{ ourProduct: "desc" }, { [effectiveSort]: order }],
+    orderBy: [{ ourProduct: "desc" }, { [effectiveSort]: order }],
     skip: (parseInt(page) - 1) * parseInt(limit),
     take: parseInt(limit),
   });

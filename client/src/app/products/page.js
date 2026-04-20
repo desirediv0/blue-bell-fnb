@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import {
     SlidersHorizontal, X, ChevronDown, ChevronUp,
     ChevronRight, AlertCircle, Search, ChevronLeft,
-    Zap,
+    Zap, Grid, List
 } from "lucide-react";
 import { ClientOnly } from "@/components/client-only";
 import { toast } from "sonner";
@@ -106,6 +106,7 @@ function ProductsContent() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [viewMode, setViewMode] = useState("grid");
     const [selectedColors, setSelectedColors] = useState(colorId ? [colorId] : []);
     const [selectedSizes, setSelectedSizes] = useState(sizeId ? [sizeId] : []);
     const [selectedAttributes, setSelectedAttributes] = useState({});
@@ -439,47 +440,69 @@ function ProductsContent() {
             </div>
 
             {/* ── Top bar: mobile filter toggle + sort ── */}
-            <div className="flex items-center gap-3 mb-5">
-                {/* Mobile filter button */}
-                <button
-                    onClick={() => setDrawerOpen(true)}
-                    className="lg:hidden flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:border-gray-300 transition-colors flex-shrink-0"
-                >
-                    <SlidersHorizontal className="h-4 w-4" />
-                    Filters
-                    {activeCount > 0 && (
-                        <span className="w-4 h-4 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                            {activeCount}
-                        </span>
-                    )}
-                </button>
-
-                {/* Result count */}
-                <p className="text-sm text-gray-500 flex-1">
-                    {loading
-                        ? <span className="inline-block h-3.5 w-24 bg-gray-100 rounded animate-pulse" />
-                        : <><span className="font-semibold text-gray-900">{pagination.total || 0}</span> products</>
-                    }
-                </p>
-
-                {/* Sort */}
-                <div className="flex items-center gap-0 border border-gray-200 rounded-xl overflow-hidden bg-white flex-shrink-0">
-                    <span className="px-3 py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 border-r border-gray-200">
-                        Sort
-                    </span>
-                    <select
-                        value={currentSort()}
-                        onChange={handleSortChange}
-                        disabled={loading}
-                        className="px-3 py-2 text-xs text-gray-700 focus:outline-none bg-white cursor-pointer"
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+                <div className="flex items-center gap-3">
+                    {/* Mobile filter button */}
+                    <button
+                        onClick={() => setDrawerOpen(true)}
+                        className="lg:hidden flex items-center gap-2 px-3.5 py-2 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-700 hover:border-gray-300 transition-colors flex-shrink-0"
                     >
-                        <option value="newest">Featured</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
-                        <option value="name-asc">Name A–Z</option>
-                        <option value="name-desc">Name Z–A</option>
-                        <option value="oldest">Oldest first</option>
-                    </select>
+                        <SlidersHorizontal className="h-4 w-4" />
+                        Filters
+                        {activeCount > 0 && (
+                            <span className="w-4 h-4 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                                {activeCount}
+                            </span>
+                        )}
+                    </button>
+
+                    {/* Result count */}
+                    <p className="text-sm text-gray-500 whitespace-nowrap">
+                        {loading
+                            ? <span className="inline-block h-3.5 w-24 bg-gray-100 rounded animate-pulse" />
+                            : <><span className="font-semibold text-gray-900">{pagination.total || 0}</span> products</>
+                        }
+                    </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    {/* View Mode Toggle */}
+                    <div className="flex bg-white border border-gray-200 rounded-xl p-1 gap-1 flex-shrink-0 shadow-sm">
+                        <button
+                            onClick={() => setViewMode("grid")}
+                            className={`p-1.5 rounded-lg transition-colors ${viewMode === "grid" ? "bg-primary text-white" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"}`}
+                            title="Grid View"
+                        >
+                            <Grid className="w-4 h-4" />
+                        </button>
+                        <button
+                            onClick={() => setViewMode("list")}
+                            className={`p-1.5 rounded-lg transition-colors ${viewMode === "list" ? "bg-primary text-white" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"}`}
+                            title="List View"
+                        >
+                            <List className="w-4 h-4" />
+                        </button>
+                    </div>
+
+                    {/* Sort */}
+                    <div className="flex items-center gap-0 border border-gray-200 rounded-xl overflow-hidden bg-white flex-shrink-0 max-w-[150px] sm:max-w-none">
+                        <span className="hidden xs:inline-block px-3 py-2 text-[11px] font-semibold text-gray-400 uppercase tracking-wider bg-gray-50 border-r border-gray-200">
+                            Sort
+                        </span>
+                        <select
+                            value={currentSort()}
+                            onChange={handleSortChange}
+                            disabled={loading}
+                            className="px-2 sm:px-3 py-2 text-xs text-gray-700 focus:outline-none bg-white cursor-pointer w-full"
+                        >
+                            <option value="newest">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name-asc">Name A–Z</option>
+                            <option value="name-desc">Name Z–A</option>
+                            <option value="oldest">Oldest first</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -532,7 +555,7 @@ function ProductsContent() {
                 {/* Product grid */}
                 <div className="flex-1 min-w-0">
                     {loading && products.length === 0 ? (
-                        <div id="products-grid-anchor" className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+                        <div id="products-grid-anchor" className={`grid gap-3 ${viewMode === "list" ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-2 sm:grid-cols-3 xl:grid-cols-4"}`}>
                             {[...Array(12)].map((_, i) => <ProductCardSkeleton key={i} />)}
                         </div>
                     ) : products.length === 0 ? (
@@ -545,9 +568,9 @@ function ProductsContent() {
                             onClearSizes={() => { setSelectedSizes([]); handleFilterChange("size", ""); }}
                         />
                     ) : (
-                        <div className={`grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 transition-opacity duration-200 ${loading ? "opacity-50 pointer-events-none" : "opacity-100"}`}>
+                        <div className={`grid gap-3 transition-opacity duration-200 ${loading ? "opacity-50 pointer-events-none" : "opacity-100"} ${viewMode === "list" ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-2 sm:grid-cols-3 xl:grid-cols-4"}`}>
                             {products.map((product) => (
-                                <ProductCard key={product.id} product={product} />
+                                <ProductCard key={product.id} product={product} viewMode={viewMode} />
                             ))}
                         </div>
                     )}
@@ -724,7 +747,7 @@ const FALLBACK = (
 export default function ProductsPage() {
     return (
         <div className="min-h-screen bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 py-5 pb-24 md:pb-8">
+            <div className="max-w-7xl mx-auto xl:px-4 py-5 pb-24 md:pb-8">
                 <ClientOnly fallback={FALLBACK}>
                     <Suspense fallback={FALLBACK}>
                         <ProductsContent />
