@@ -9,7 +9,7 @@ const Headtext = ({ text, className }) => {
       <span className="relative inline-block">
         {text}
         <motion.span
-          className="absolute -bottom-3 left-0 h-1 bg-[#F47C20] w-0"
+          className="absolute -bottom-3 left-0 h-1 bg-[#175C98] w-0"
           animate={{ width: "100%" }}
           transition={{ delay: 0.8, duration: 0.8 }}
         ></motion.span>

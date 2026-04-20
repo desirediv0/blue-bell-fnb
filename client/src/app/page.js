@@ -7,6 +7,7 @@ import HomePageContent from "@/components/sections/HomePageContent";
 import { WhyBuySection } from "@/components/sections/WhyBuySection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { SocialMediaSection } from "@/components/sections/SocialMediaSection";
+import CategoryGrid from "@/components/sections/CategoryGrid";
 
 export const metadata = {
   title: "Blue Bell FNB | Premium Dairy Products & Fresh Farm Milk",
@@ -27,6 +28,8 @@ export default function Home() {
 
         {/* ── Flash Sale ── */}
         <FlashSaleSection />
+
+        <CategoryGrid />
 
         {/* ── All Product Sections + HOT BRANDS (client-side, API driven) ── */}
         <HomePageContent />

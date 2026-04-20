@@ -14,13 +14,37 @@ import {
 
 import { fetchApi } from "@/lib/utils";
 
-// ✅ React Icons
 import {
-  FaDumbbell,
-  FaAppleAlt,
-  FaHeartbeat,
-  FaTags,
+  FaBoxOpen,
+  FaCapsules,
+  FaSeedling,
 } from "react-icons/fa";
+import { 
+  GiCheeseWedge, 
+  GiMasonJar,
+  GiButter,
+  GiCow,
+  GiGrain,
+  GiSpoon,
+  GiCupcake,
+} from "react-icons/gi";
+import { 
+  LuMilk,
+} from "react-icons/lu";
+import { 
+  MdOutlineIcecream,
+  MdOutlineShoppingBasket,
+  MdOutlineLocalDrink,
+} from "react-icons/md";
+import { 
+  BsTagFill 
+} from "react-icons/bs";
+import { 
+  TbMilk,
+} from "react-icons/tb";
+
+
+
 
 const CategoriesCarousel = () => {
   const [categories, setCategories] = useState([]);
@@ -33,14 +57,36 @@ const CategoriesCarousel = () => {
   // ✅ Icon mapping function
   const getCategoryIcon = (category) => {
     const name = category.name?.toLowerCase() || "";
+    const slug = category.slug?.toLowerCase() || "";
+    const size = 32;
 
-    if (name.includes("fitness")) return <FaDumbbell size={28} />;
-    if (name.includes("health")) return <FaHeartbeat size={28} />;
-    if (name.includes("nutrition")) return <FaAppleAlt size={28} />;
-    if (name.includes("offer")) return <FaTags size={28} />;
+    // Dairy & Grocery specific mapping from images
+    if (name.includes("milk powder")) return <FaBoxOpen size={size} />;
+    if (name.includes("milk") || slug.includes("milk")) return <LuMilk size={size} />;
+    if (name.includes("beverages") || slug.includes("beverages")) return <MdOutlineLocalDrink size={size} />;
+    if (name.includes("sweets") || slug.includes("sweets")) return <GiCupcake size={size} />;
+    if (name.includes("ghee") || slug.includes("ghee")) return <GiMasonJar size={size} />;
+    if (name.includes("paneer") || slug.includes("paneer") || name.includes("cheese")) return <GiCheeseWedge size={size} />;
+    if (name.includes("butter") || slug.includes("butter")) return <GiButter size={size} />;
+    if (name.includes("curd") || slug.includes("curd") || name.includes("yogurt")) return <TbMilk size={size} />;
+    if (name.includes("ice cream") || slug.includes("ice-cream")) return <MdOutlineIcecream size={size} />;
+    if (name.includes("turmeric") || slug.includes("haldi")) return <GiSpoon size={size} />;
+    
+    // Animal Feed & Supplements
+    if (name.includes("calf feed")) return <FaSeedling size={size} />;
+    if (name.includes("cow feed")) return <GiGrain size={size} />;
+    if (name.includes("supplement")) return <FaCapsules size={size} />;
+    if (name.includes("cow") || slug.includes("cow") || name.includes("dairy")) return <GiCow size={size} />;
 
-    return <FaDumbbell size={28} />;
+    if (name.includes("offer") || slug.includes("offer")) return <BsTagFill size={size} />;
+
+    return <MdOutlineShoppingBasket size={size} />;
   };
+
+
+
+
+
 
   // Load categories
   useEffect(() => {
@@ -113,22 +159,23 @@ const CategoriesCarousel = () => {
               </div>
             </div>
           ) : (
-            <div className="relative w-full h-full overflow-hidden bg-gray-50 flex items-center justify-center">
+            <div className="relative w-full h-full overflow-hidden bg-blue-50/50 flex items-center justify-center group-hover:bg-blue-100/50 transition-colors duration-300">
               {category.image ? (
                 <Image
                   src={category.image}
                   alt={category.name || "Category"}
                   width={200}
                   height={200}
-                  className="object-contain sm:w-20 sm:h-20"
+                  className="object-contain sm:w-20 sm:h-20 drop-shadow-sm group-hover:scale-110 transition-transform duration-300"
                   loading="lazy"
                 />
               ) : (
-                <div className="text-gray-400 group-hover:text-blue-500 transition">
+                <div className="text-blue-600/80 group-hover:text-blue-600 group-hover:scale-110 transition-all duration-300 transform">
                   {getCategoryIcon(category)}
                 </div>
               )}
             </div>
+
           )}
         </motion.div>
 
