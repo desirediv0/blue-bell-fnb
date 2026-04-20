@@ -20,14 +20,21 @@ import CategoriesCarousel from "@/components/sections/CategoriesCarousel";
 ───────────────────────────────────────────── */
 function ProductCardSkeleton() {
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden animate-pulse">
-            <div className="aspect-square bg-gray-100" />
-            <div className="p-3 space-y-2">
-                <div className="h-3 bg-gray-100 rounded-full w-3/4" />
-                <div className="h-3 bg-gray-100 rounded-full w-1/2" />
-                <div className="flex justify-between items-center pt-1">
-                    <div className="h-4 bg-gray-100 rounded-full w-16" />
-                    <div className="h-7 bg-gray-100 rounded-lg w-14" />
+        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden animate-pulse shadow-sm">
+            <div className="aspect-square bg-gray-50 relative">
+                <div className="absolute top-2 right-2 w-10 h-4 bg-gray-100 rounded-full" />
+            </div>
+            <div className="p-3.5 space-y-3">
+                <div className="space-y-1.5">
+                    <div className="h-4 bg-gray-100 rounded-full w-full" />
+                    <div className="h-3 bg-gray-50 rounded-full w-2/3" />
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                    <div className="space-y-1">
+                        <div className="h-4 bg-gray-100 rounded-full w-14" />
+                        <div className="h-3 bg-gray-50 rounded-full w-10" />
+                    </div>
+                    <div className="h-8 bg-gray-100 rounded-xl w-16" />
                 </div>
             </div>
         </div>
@@ -104,7 +111,7 @@ function ProductsContent() {
     const [selectedAttributes, setSelectedAttributes] = useState({});
     const [openSections, setOpenSections] = useState({ search: true, categories: true });
     const [searchInput, setSearchInput] = useState(searchQuery);
-    const [pagination, setPagination] = useState({ page: pageParam, limit: 20, total: 0, pages: 0 });
+    const [pagination, setPagination] = useState({ page: pageParam, limit: 12, total: 0, pages: 0 });
 
     const [filters, setFilters] = useState({
         search: searchQuery, category: categorySlug, productType,
@@ -120,14 +127,16 @@ function ProductsContent() {
         const fromURL = {
             search: searchQuery, category: categorySlug, productType,
             color: colorId, size: sizeId, minPrice, maxPrice,
-            sort: sortParam, order: orderParam,
+            sort: sortParam, order: orderParam, page: pageParam
         };
-        const same = Object.keys(fromURL).every((k) => String(filters[k] || "") === String(fromURL[k] || ""));
+        const same = Object.keys(fromURL).every((k) => String(filters[k] || (k === 'page' ? pagination.page : "")) === String(fromURL[k] || ""));
         if (!same) {
             setFilters(fromURL);
             setSelectedColors(colorId ? [colorId] : []);
             setSelectedSizes(sizeId ? [sizeId] : []);
-            setPagination((p) => ({ ...p, page: 1 }));
+            if (pageParam !== pagination.page) {
+                setPagination((p) => ({ ...p, page: pageParam }));
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchQuery, categorySlug, productType, colorId, sizeId, minPrice, maxPrice, sortParam, orderParam]);
@@ -143,6 +152,7 @@ function ProductsContent() {
         add("color", f.color); add("size", f.size);
         add("minPrice", f.minPrice); add("maxPrice", f.maxPrice);
         if (f.sort !== "createdAt" || f.order !== "desc") { add("sort", f.sort); add("order", f.order); }
+        if (f.page > 1) add("page", f.page);
         router.push(pairs.length ? `?${pairs.join("&")}` : window.location.pathname, { scroll: false });
     };
 
@@ -218,7 +228,10 @@ function ProductsContent() {
     /* ── Scroll top on page change ── */
     useEffect(() => {
         const t = setTimeout(() => {
-            document.getElementById("products-main")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            const gridTop = document.getElementById("products-grid-anchor");
+            if (gridTop) {
+                gridTop.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
         }, 100);
         return () => clearTimeout(t);
     }, [pagination.page]);
@@ -255,13 +268,17 @@ function ProductsContent() {
 
     const handleSortChange = (e) => {
         const map = {
-            newest: ["createdAt", "desc"], oldest: ["createdAt", "asc"],
-            "price-low": ["createdAt", "asc"], "price-high": ["createdAt", "desc"],
-            "name-asc": ["name", "asc"], "name-desc": ["name", "desc"],
+            newest: ["createdAt", "desc"],
+            oldest: ["createdAt", "asc"],
+            "price-low": ["price", "asc"],
+            "price-high": ["price", "desc"],
+            "name-asc": ["name", "asc"],
+            "name-desc": ["name", "desc"],
         };
         const [sort, order] = map[e.target.value] || ["createdAt", "desc"];
         const nf = { ...filters, sort, order };
-        setFilters(nf); updateURL(nf);
+        setFilters(nf);
+        updateURL(nf);
     };
 
     const handlePageChange = (p) => {
@@ -281,6 +298,8 @@ function ProductsContent() {
 
     /* ── Current sort value ── */
     const currentSort = () => {
+        if (filters.sort === "price" && filters.order === "asc") return "price-low";
+        if (filters.sort === "price" && filters.order === "desc") return "price-high";
         if (filters.sort === "name" && filters.order === "asc") return "name-asc";
         if (filters.sort === "name" && filters.order === "desc") return "name-desc";
         if (filters.sort === "createdAt" && filters.order === "asc") return "oldest";
@@ -392,15 +411,7 @@ function ProductsContent() {
         </div>
     );
 
-    /* ── Loading initial ── */
-    if (loading && products.length === 0 && !error) {
-        return (
-            <div className="flex flex-col items-center justify-center h-64 gap-3">
-                <div className="w-10 h-10 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-                <p className="text-sm text-gray-400">Loading products...</p>
-            </div>
-        );
-    }
+    /* ── Loading initial - Handled by skeleton grid in main render ── */
 
     /* ── Render ── */
     return (
@@ -521,7 +532,7 @@ function ProductsContent() {
                 {/* Product grid */}
                 <div className="flex-1 min-w-0">
                     {loading && products.length === 0 ? (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+                        <div id="products-grid-anchor" className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
                             {[...Array(12)].map((_, i) => <ProductCardSkeleton key={i} />)}
                         </div>
                     ) : products.length === 0 ? (
@@ -634,11 +645,11 @@ function Pagination({ current, total, loading, onChange }) {
     const deduped = pages.filter((p, i, arr) => p !== "..." || arr[i - 1] !== "...");
 
     return (
-        <div className="flex justify-center items-center gap-1.5 mt-10 mb-2">
+        <div className="flex flex-wrap justify-center items-center gap-1 sm:gap-2 mt-12 mb-4">
             <button
                 onClick={() => onChange(current - 1)}
                 disabled={current === 1 || loading}
-                className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm active:scale-95"
             >
                 <ChevronLeft className="h-4 w-4" />
             </button>
@@ -653,9 +664,9 @@ function Pagination({ current, total, loading, onChange }) {
                         key={p}
                         onClick={() => onChange(p)}
                         disabled={loading}
-                        className={`w-9 h-9 flex items-center justify-center rounded-xl text-sm font-medium transition-colors ${p === current
-                            ? "bg-primary text-white shadow-sm"
-                            : "border border-gray-200 bg-white text-gray-600 hover:border-gray-300"
+                        className={`w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl text-sm font-medium transition-all shadow-sm active:scale-95 ${p === current
+                            ? "bg-primary text-white scale-105"
+                            : "border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary"
                             }`}
                     >
                         {p}
@@ -666,7 +677,7 @@ function Pagination({ current, total, loading, onChange }) {
             <button
                 onClick={() => onChange(current + 1)}
                 disabled={current === total || loading}
-                className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 hover:border-primary hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm active:scale-95"
             >
                 <ChevronRight className="h-4 w-4" />
             </button>
@@ -678,9 +689,35 @@ function Pagination({ current, total, loading, onChange }) {
    PAGE WRAPPER
 ───────────────────────────────────────────── */
 const FALLBACK = (
-    <div className="flex flex-col items-center justify-center h-64 gap-3">
-        <div className="w-10 h-10 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-        <p className="text-sm text-gray-400">Loading...</p>
+    <div className="flex gap-6 animate-pulse">
+        {/* Sidebar Skeleton */}
+        <div className="hidden lg:block w-64 space-y-6">
+            <div className="h-10 bg-white rounded-2xl border border-gray-100" />
+            <div className="space-y-3">
+                <div className="h-4 bg-gray-200 rounded-full w-1/2" />
+                {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-8 bg-white rounded-xl border border-gray-50" />
+                ))}
+            </div>
+        </div>
+        {/* Grid Skeleton */}
+        <div className="flex-1">
+            <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3">
+                {[...Array(12)].map((_, i) => (
+                    <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+                        <div className="aspect-square bg-gray-50" />
+                        <div className="p-3.5 space-y-3">
+                            <div className="h-4 bg-gray-100 rounded-full w-full" />
+                            <div className="h-3 bg-gray-50 rounded-full w-2/3" />
+                            <div className="flex justify-between items-center pt-2">
+                                <div className="h-4 bg-gray-100 rounded-full w-14" />
+                                <div className="h-8 bg-gray-100 rounded-xl w-16" />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     </div>
 );
 

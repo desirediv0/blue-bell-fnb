@@ -94,6 +94,9 @@ export const getProductsByCategory = asyncHandler(async (req, res) => {
     order = "desc",
   } = req.query;
 
+  const isPriceSort = sort === "price";
+  const effectiveSort = isPriceSort ? "createdAt" : sort;
+
   // Find the category by slug
   const category = await prisma.category.findUnique({
     where: { slug },
@@ -168,7 +171,18 @@ export const getProductsByCategory = asyncHandler(async (req, res) => {
         },
       },
     },
-    orderBy: [{ ourProduct: "desc" }, { [sort]: order }],
+    orderBy: isPriceSort
+      ? [
+          { ourProduct: "desc" },
+          {
+            variants: {
+              _min: {
+                price: order,
+              },
+            },
+          },
+        ]
+      : [{ ourProduct: "desc" }, { [effectiveSort]: order }],
     skip: (parseInt(page) - 1) * parseInt(limit),
     take: parseInt(limit),
   });

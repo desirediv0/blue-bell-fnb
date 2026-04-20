@@ -9,7 +9,7 @@ import { formatVariantWithAttributes } from "../utils/variant-attributes.js";
 export const getAllProducts = asyncHandler(async (req, res) => {
   const {
     page = 1,
-    limit = 10,
+    limit = 12,
     search = "",
     category = "",
     sort = "createdAt",
@@ -22,6 +22,10 @@ export const getAllProducts = asyncHandler(async (req, res) => {
     size, // For backward compatibility
     attributeValueIds, // Comma-separated attribute value IDs for filtering
   } = req.query;
+
+  const isPriceSort = sort === "price";
+  // The actual sort field for Prisma: price isn't on Product model
+  const effectiveSort = isPriceSort ? "createdAt" : sort;
 
   // Normalize search: treat + as space (when querystrings use + for spaces)
   const normalizedSearch =
@@ -54,6 +58,14 @@ export const getAllProducts = asyncHandler(async (req, res) => {
             name: { contains: normalizedSearch, mode: "insensitive" },
           },
         },
+        // Also allow searching by tags
+        {
+          tags: { hasSome: normalizedSearch.split(" ").filter(t => t.length > 2) }
+        },
+        // Handle full string match in tags too
+        {
+          tags: { has: normalizedSearch }
+        }
       ],
     }),
     // Filter by category
@@ -210,7 +222,18 @@ export const getAllProducts = asyncHandler(async (req, res) => {
         },
       },
     },
-    orderBy: [{ [sort]: order }],
+    orderBy: isPriceSort
+      ? [
+          { ourProduct: "desc" },
+          {
+            variants: {
+              _min: {
+                price: order,
+              },
+            },
+          },
+        ]
+      : [{ ourProduct: "desc" }, { [effectiveSort]: order }],
     skip: (parseInt(page) - 1) * parseInt(limit),
     take: parseInt(limit),
   });
