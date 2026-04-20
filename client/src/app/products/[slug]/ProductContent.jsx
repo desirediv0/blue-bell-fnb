@@ -65,18 +65,23 @@ export default function ProductContent({ slug }) {
   /* ── Slab pricing ── */
   const getEffectivePrice = (variant, qty) => {
     if (!variant) return null;
-    const baseSalePrice = variant.salePrice ? parseFloat(variant.salePrice) : null;
-    const basePrice     = variant.price     ? parseFloat(variant.price)     : 0;
-    const originalPrice = baseSalePrice || basePrice;
+    const salePrice = variant.salePrice ? parseFloat(variant.salePrice) : null;
+    const regPrice  = variant.price     ? parseFloat(variant.price)     : 0;
+
+    let price = salePrice && salePrice < regPrice ? salePrice : regPrice;
+    let originalPrice = salePrice && salePrice < regPrice ? regPrice : null;
+
     if (variant.pricingSlabs?.length > 0) {
       const sorted = [...variant.pricingSlabs].sort((a, b) => b.minQty - a.minQty);
       for (const slab of sorted) {
-        if (qty >= slab.minQty && (slab.maxQty === null || qty <= slab.maxQty))
-          return { price: slab.price, originalPrice, source: "SLAB", slab };
+        if (qty >= slab.minQty && (slab.maxQty === null || qty <= slab.maxQty)) {
+          return { price: parseFloat(slab.price), originalPrice: price, source: "SLAB", slab };
+        }
       }
     }
-    return { price: originalPrice, originalPrice, source: "DEFAULT", slab: null };
+    return { price, originalPrice, source: "DEFAULT", slab: null };
   };
+
 
   /* ── Fetch product ── */
   useEffect(() => {
@@ -234,24 +239,30 @@ export default function ProductContent({ slug }) {
       );
 
     if (product?.flashSale?.isActive) {
-      const disc = calcDiscount(parseFloat(product.basePrice), parseFloat(product.flashSale.flashSalePrice));
+      const flashPrice = parseFloat(product.flashSale.flashSalePrice);
+      const regPrice   = parseFloat(product.basePrice);
+      const disc = calcDiscount(regPrice, flashPrice);
       return (
         <div className="space-y-1">
-          <div className="flex items-baseline gap-3 flex-wrap">
+          <div className="flex items-center gap-3 flex-wrap">
             <span className="text-4xl font-black text-primary tracking-tight">
-              {formatCurrency(product.flashSale.flashSalePrice)}
+              {formatCurrency(flashPrice)}
             </span>
-            <span className="text-xl text-gray-400 line-through">{formatCurrency(product.basePrice)}</span>
+            <span className="text-xl text-gray-400 line-through decoration-gray-300">
+              {formatCurrency(regPrice)}
+            </span>
             {disc > 0 && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary text-white text-xs font-bold">
-                <Zap className="h-3 w-3" />{disc}% OFF
-              </span>
+              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                <Zap className="h-3 w-3 fill-white animate-pulse" />
+                <span>{disc}% OFF</span>
+              </div>
             )}
           </div>
-          <p className="text-xs text-gray-400">Inclusive of all taxes · Flash Sale</p>
+          <p className="text-xs text-gray-400 font-medium tracking-wide uppercase">Inclusive of all taxes · Flash Sale</p>
         </div>
       );
     }
+
 
     if (selectedVariant) {
       const info = effectivePriceInfo || getEffectivePrice(selectedVariant, quantity);
@@ -259,40 +270,54 @@ export default function ProductContent({ slug }) {
       const disc = info.originalPrice > info.price ? calcDiscount(info.originalPrice, info.price) : 0;
       return (
         <div className="space-y-1">
-          <div className="flex items-baseline gap-3 flex-wrap">
+          <div className="flex items-center gap-3 flex-wrap">
             <span className="text-4xl font-black text-primary tracking-tight">{formatCurrency(info.price)}</span>
             {info.originalPrice > info.price && (
               <>
-                <span className="text-xl text-gray-400 line-through">{formatCurrency(info.originalPrice)}</span>
-                {disc > 0 && <span className="px-2.5 py-1 rounded-full bg-red-500 text-white text-xs font-bold">-{disc}%</span>}
+                <span className="text-xl text-gray-400 line-through decoration-gray-300">{formatCurrency(info.originalPrice)}</span>
+                {disc > 0 && (
+                  <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-gradient-to-r from-rose-500 to-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                    {disc}% OFF
+                  </div>
+                )}
               </>
             )}
           </div>
           {info.source === "SLAB" && (
-            <p className="text-sm text-green-600 font-medium">Bulk price applied for {quantity} units</p>
+            <p className="text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded-lg inline-block mt-2">
+              🔥 Bulk Discount: {formatCurrency(info.originalPrice - info.price)} saved per unit
+            </p>
           )}
-          <p className="text-xs text-gray-400">Inclusive of all taxes</p>
+          <p className="text-xs text-gray-400 font-medium tracking-wide uppercase">Inclusive of all taxes</p>
         </div>
       );
     }
 
-    const bp   = product?.basePrice    || 0;
-    const rp   = product?.regularPrice || 0;
-    const disc = product?.hasSale && rp > bp ? calcDiscount(rp, bp) : 0;
+    const bp   = parseFloat(product?.basePrice)    || 0;
+    const rp   = parseFloat(product?.regularPrice) || 0;
+    const currentPrice = (product?.hasSale && rp > bp) ? bp : (bp || rp);
+    const originalPrice = (product?.hasSale && rp > bp) ? rp : null;
+    const disc = originalPrice ? calcDiscount(originalPrice, currentPrice) : 0;
+
     return (
       <div className="space-y-1">
-        <div className="flex items-baseline gap-3 flex-wrap">
-          <span className="text-4xl font-black text-primary tracking-tight">{formatCurrency(bp)}</span>
-          {disc > 0 && (
+        <div className="flex items-center gap-3 flex-wrap">
+          <span className="text-4xl font-black text-primary tracking-tight">{formatCurrency(currentPrice)}</span>
+          {originalPrice && (
             <>
-              <span className="text-xl text-gray-400 line-through">{formatCurrency(rp)}</span>
-              <span className="px-2.5 py-1 rounded-full bg-red-500 text-white text-xs font-bold">-{disc}%</span>
+              <span className="text-xl text-gray-400 line-through decoration-gray-300">{formatCurrency(originalPrice)}</span>
+              {disc > 0 && (
+                <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-gradient-to-r from-rose-500 to-red-600 text-white text-[10px] font-extrabold uppercase tracking-wider shadow-sm">
+                  {disc}% OFF
+                </div>
+              )}
             </>
           )}
         </div>
-        <p className="text-xs text-gray-400">Inclusive of all taxes</p>
+        <p className="text-xs text-gray-400 font-medium tracking-wide uppercase">Inclusive of all taxes</p>
       </div>
     );
+
   };
 
   /* ── Loading / Error / Not found states ── */
@@ -386,11 +411,12 @@ export default function ProductContent({ slug }) {
 
               {/* Flash sale overlay badge */}
               {product.flashSale?.isActive && (
-                <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-full text-xs font-bold shadow-md">
-                  <Zap className="h-3 w-3" />
+                <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full text-[10px] font-extrabold shadow-md border border-white/20 uppercase tracking-widest backdrop-blur-sm">
+                  <Zap className="h-3 w-3 fill-white animate-pulse" />
                   FLASH SALE — {product.flashSale.discountPercentage}% OFF
                 </div>
               )}
+
 
               {/* Wishlist on image corner */}
               <button
@@ -528,7 +554,7 @@ export default function ProductContent({ slug }) {
                 {selectedVariant && stock > 0 && (
                   <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-green-50 border border-green-100 text-sm font-medium text-green-700">
                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" />
-                    In Stock · {stock} available
+                    In Stock 
                   </span>
                 )}
                 {outOfStock && (

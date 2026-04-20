@@ -201,7 +201,7 @@ export const ProductCard = ({ product }) => {
   ───────────────────────────────────────── */
   return (
     <div
-      className="group relative bg-white rounded-2xl overflow-hidden flex flex-col h-full border border-gray-100 transition-all duration-300 hover:shadow-[0_6px_24px_rgba(0,0,0,0.09)] hover:-translate-y-0.5"
+      className="group relative bg-white rounded overflow-hidden flex flex-col h-full border border-gray-100 transition-all duration-300 hover:shadow-[0_6px_24px_rgba(0,0,0,0.09)] hover:-translate-y-0.5"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -212,19 +212,20 @@ export const ProductCard = ({ product }) => {
         style={{ aspectRatio: "1 / 1" }}
       >
         {/* ── Badges (top-left) ── */}
-        <div className="absolute top-2.5 left-2.5 z-20 flex flex-col gap-1.5 pointer-events-none">
+        <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 pointer-events-none">
           {showFlashSaleBadge && discountPercent > 0 && (
-            <span className="inline-flex items-center gap-1 pl-1.5 pr-2 py-0.5 rounded-full text-[10px] font-bold bg-primary text-white shadow-sm leading-none">
-              <Zap className="h-2.5 w-2.5" />
-              {discountPercent}% OFF
-            </span>
+            <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-md border border-white/20 uppercase tracking-wider backdrop-blur-sm">
+              <Zap className="h-3 w-3 fill-white animate-pulse" />
+              <span>{discountPercent}% OFF</span>
+            </div>
           )}
           {!showFlashSaleBadge && hasSale && discountPercent > 0 && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-500 text-white shadow-sm leading-none">
-              -{discountPercent}%
-            </span>
+            <div className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-gradient-to-r from-green-500 to-green-600 text-white shadow-md border border-white/20 uppercase tracking-wider">
+              {discountPercent}% OFF
+            </div>
           )}
         </div>
+
 
         {/* ── Wishlist (top-right) ── */}
         <button
