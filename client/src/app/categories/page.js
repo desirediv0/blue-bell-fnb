@@ -4,12 +4,68 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { fetchApi } from "@/lib/utils";
-import { AlertCircle, ArrowRight, Store, Zap, Image as ImageIcon, HeartPulse } from "lucide-react";
+import { AlertCircle, ArrowRight, Store, Zap, HeartPulse } from "lucide-react";
+import {
+    FaBoxOpen,
+    FaCapsules,
+    FaSeedling,
+} from "react-icons/fa";
+import { 
+    GiCheeseWedge, 
+    GiMasonJar,
+    GiButter,
+    GiCow,
+    GiGrain,
+    GiSpoon,
+    GiCupcake,
+} from "react-icons/gi";
+import { 
+    LuMilk,
+} from "react-icons/lu";
+import { 
+    MdOutlineIcecream,
+    MdOutlineShoppingBasket,
+    MdOutlineLocalDrink,
+} from "react-icons/md";
+import { 
+    BsTagFill 
+} from "react-icons/bs";
+import { 
+    TbMilk,
+} from "react-icons/tb";
 
 const getImageUrl = (image) => {
     if (!image) return "/placeholder.jpg";
     if (image.startsWith("http")) return image;
     return `https://desirediv-storage.blr1.digitaloceanspaces.com/${image}`;
+};
+
+const getCategoryIcon = (category) => {
+    const name = category.name?.toLowerCase() || "";
+    const slug = category.slug?.toLowerCase() || "";
+    const size = 64; 
+
+    // Dairy & Grocery specific mapping
+    if (name.includes("milk powder")) return <FaBoxOpen size={size} className="text-blue-500/70" />;
+    if (name.includes("milk") || slug.includes("milk")) return <LuMilk size={size} className="text-blue-500/70" />;
+    if (name.includes("beverages") || slug.includes("beverages")) return <MdOutlineLocalDrink size={size} className="text-blue-500/70" />;
+    if (name.includes("sweets") || slug.includes("sweets")) return <GiCupcake size={size} className="text-blue-500/70" />;
+    if (name.includes("ghee") || slug.includes("ghee")) return <GiMasonJar size={size} className="text-blue-500/70" />;
+    if (name.includes("paneer") || slug.includes("paneer") || name.includes("cheese")) return <GiCheeseWedge size={size} className="text-blue-500/70" />;
+    if (name.includes("butter") || slug.includes("butter")) return <GiButter size={size} className="text-blue-500/70" />;
+    if (name.includes("curd") || slug.includes("curd") || name.includes("yogurt")) return <TbMilk size={size} className="text-blue-500/70" />;
+    if (name.includes("ice cream") || slug.includes("ice-cream")) return <MdOutlineIcecream size={size} className="text-blue-500/70" />;
+    if (name.includes("turmeric") || slug.includes("haldi")) return <GiSpoon size={size} className="text-blue-500/70" />;
+    
+    // Animal Feed & Supplements
+    if (name.includes("calf feed")) return <FaSeedling size={size} className="text-blue-500/70" />;
+    if (name.includes("cow feed")) return <GiGrain size={size} className="text-blue-500/70" />;
+    if (name.includes("supplement")) return <FaCapsules size={size} className="text-blue-500/70" />;
+    if (name.includes("cow") || slug.includes("cow") || name.includes("dairy")) return <GiCow size={size} className="text-blue-500/70" />;
+
+    if (name.includes("offer") || slug.includes("offer")) return <BsTagFill size={size} className="text-orange-500/70" />;
+
+    return <MdOutlineShoppingBasket size={size} className="text-gray-400" />;
 };
 
 // Category Card
@@ -28,8 +84,10 @@ const CategoryCard = ({ category, index }) => {
                                 className="object-contain p-5 transition-transform duration-300 group-hover:scale-105"
                             />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                                <ImageIcon className="w-16 h-16 text-gray-300 group-hover:text-primary/50 transition-colors" />
+                            <div className="w-full h-full flex flex-col items-center justify-center bg-blue-50/50 group-hover:bg-blue-100/50 transition-colors duration-300">
+                                <div className="group-hover:scale-110 transition-transform duration-300">
+                                    {getCategoryIcon(category)}
+                                </div>
                             </div>
                         )}
 
