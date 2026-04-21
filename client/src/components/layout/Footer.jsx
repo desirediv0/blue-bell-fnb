@@ -54,7 +54,7 @@ export const Footer = () => {
 
           {/* ── Brand col (spans 2) ── */}
           <div className="col-span-2">
-            <Link href="/" className="inline-block mb-6">
+            <Link href="/" className="inline-flex items-center gap-2 mb-6">
               <Image
                 src="/logo.png"
                 alt="Blue Bell FNB"
@@ -62,6 +62,10 @@ export const Footer = () => {
                 height={52}
                 className="h-16 w-auto rounded"
               />
+              <span className="text-sm md:text-xl font-bold text-[#1E7FBC] flex flex-col items-start leading-none">
+                <p>BlueBell</p>
+                <p>Foundation</p>
+              </span>
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed mb-7 max-w-[260px]">
@@ -182,38 +186,13 @@ export const Footer = () => {
           {/* ── Partner col ── */}
           <div className="col-span-1">
             <p className="text-[11px] font-bold tracking-[0.14em] uppercase text-blue-400/70 mb-5">
-              Partners
+            We accept
             </p>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/become-partner"
-                  className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors"
-                >
-                  <span className="relative flex h-2 w-2 flex-shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-60" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400" />
-                  </span>
-                  Become a partner
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={PARTNER_PORTAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-slate-400 hover:text-white transition-colors"
-                >
-                  Partner login
-                </a>
-              </li>
-            </ul>
+            
 
             {/* Payment methods */}
             <div className="mt-8">
-              <p className="text-[11px] font-bold tracking-[0.14em] uppercase text-blue-400/70 mb-3">
-                We accept
-              </p>
+             
               <div className="flex flex-wrap gap-2">
                 {["UPI", "Visa", "MC", "COD", "Net Banking"].map((m) => (
                   <span
