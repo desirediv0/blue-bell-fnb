@@ -1,4 +1,4 @@
-import CategoriesCarousel from "@/components/sections/CategoriesCarousel";
+// import CategoriesCarousel from "@/components/sections/CategoriesCarousel";
 import HeroSection from "@/components/sections/HeroSection";
 import { FlashSaleSection } from "@/components/sections/FlashSaleSection";
 import AnnouncementBanner from "@/components/sections/AnnouncementBanner";
@@ -21,7 +21,7 @@ export default function Home() {
         {/* ── Top Section ── */}
         <HeroSection />
         <AnnouncementBanner />
-        <CategoriesCarousel />
+        {/* <CategoriesCarousel /> */}
 
         {/* ── Brand Showcase ── */}
         {/* <BrandCarousel tag="TOP" title="TOP BRANDS" /> */}
