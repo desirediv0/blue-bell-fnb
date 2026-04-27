@@ -141,7 +141,7 @@ export default function HomePageContent() {
     if (!loading && sectionProducts.length === 0) return null;
 
     return (
-      <section className={`py-3  my-2 ${bgClass}`}>
+      <section className={`py-5 md:py-6 ${bgClass}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <Headtext text={title} />
