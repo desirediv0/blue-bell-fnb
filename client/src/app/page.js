@@ -2,7 +2,7 @@ import CategoriesCarousel from "@/components/sections/CategoriesCarousel";
 import HeroSection from "@/components/sections/HeroSection";
 import { FlashSaleSection } from "@/components/sections/FlashSaleSection";
 import AnnouncementBanner from "@/components/sections/AnnouncementBanner";
-import BrandCarousel from "@/components/sections/BrandCarousel";
+// import BrandCarousel from "@/components/sections/BrandCarousel";
 import HomePageContent from "@/components/sections/HomePageContent";
 import { WhyBuySection } from "@/components/sections/WhyBuySection";
 import { TrustSection } from "@/components/sections/TrustSection";
@@ -24,7 +24,7 @@ export default function Home() {
         <AnnouncementBanner />
 
         {/* ── Brand Showcase ── */}
-        <BrandCarousel tag="TOP" title="TOP BRANDS" />
+        {/* <BrandCarousel tag="TOP" title="TOP BRANDS" /> */}
 
         {/* ── Flash Sale ── */}
         <FlashSaleSection />

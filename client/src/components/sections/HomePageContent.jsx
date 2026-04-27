@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { fetchApi } from "@/lib/utils";
 import Headtext from "@/components/ui/headtext";
-import BrandCarousel from "@/components/sections/BrandCarousel";
+// import BrandCarousel from "@/components/sections/BrandCarousel";
 import { ProductCard } from "@/components/products/ProductCard";
 import CategoryGrid from "@/components/sections/CategoryGrid";
 import {
@@ -106,11 +106,11 @@ export default function HomePageContent() {
       setLoading(true);
       try {
         const endpoints = [
-          { key: "featured",    url: "/public/products/type/featured?limit=12"  },
-          { key: "latest",      url: "/public/products/type/latest?limit=12"    },
-          { key: "bestseller",  url: "/public/products/type/bestseller?limit=12"},
-          { key: "trending",    url: "/public/products/type/trending?limit=12"  },
-          { key: "new",         url: "/public/products/type/new?limit=12"       },
+          { key: "featured", url: "/public/products/type/featured?limit=12" },
+          { key: "latest", url: "/public/products/type/latest?limit=12" },
+          { key: "bestseller", url: "/public/products/type/bestseller?limit=12" },
+          { key: "trending", url: "/public/products/type/trending?limit=12" },
+          { key: "new", url: "/public/products/type/new?limit=12" },
         ];
 
         const results = await Promise.allSettled(
@@ -133,7 +133,7 @@ export default function HomePageContent() {
     };
 
     fetchAll();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderSection = (key, title, description, bgClass = "bg-white") => {
@@ -165,7 +165,7 @@ export default function HomePageContent() {
       )}
 
       {/* NEW BRANDS */}
-      <BrandCarousel tag="HOT" title="HOT BRANDS" />
+      {/* <BrandCarousel tag="HOT" title="HOT BRANDS" /> */}
 
       {/* LATEST PRODUCTS */}
       {renderSection(
@@ -191,10 +191,10 @@ export default function HomePageContent() {
         "bg-white"
       )}
 
-            <CategoryGrid />
+      <CategoryGrid />
 
-                 {/* NEW BRANDS */}
-      <BrandCarousel tag="NEW" title="NEW BRANDS" />
+      {/* NEW BRANDS */}
+      {/* <BrandCarousel tag="NEW" title="NEW BRANDS" /> */}
 
       {/* NEW ARRIVALS */}
       {renderSection(
