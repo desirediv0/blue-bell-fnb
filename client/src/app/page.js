@@ -19,9 +19,9 @@ export default function Home() {
     <>
       <main>
         {/* ── Top Section ── */}
-        <CategoriesCarousel />
         <HeroSection />
         <AnnouncementBanner />
+        <CategoriesCarousel />
 
         {/* ── Brand Showcase ── */}
         {/* <BrandCarousel tag="TOP" title="TOP BRANDS" /> */}

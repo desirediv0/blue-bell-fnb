@@ -17,21 +17,21 @@ import {
 ───────────────────────────────────────────── */
 function normalizeSlide(slide) {
   return {
-    img:      slide.img      || slide.desktopImage || "",
-    smimg:    slide.smimg    || slide.mobileImage  || slide.desktopImage || slide.img || "",
-    title:    slide.title    || slide.headline     || "",
-    subtitle: slide.subtitle || slide.subheadline  || "",
-    ctaLink:  slide.ctaLink  || slide.link         || "/products",
+    img: slide.img || slide.desktopImage || "",
+    smimg: slide.smimg || slide.mobileImage || slide.desktopImage || slide.img || "",
+    title: slide.title || slide.headline || "",
+    subtitle: slide.subtitle || slide.subheadline || "",
+    ctaLink: slide.ctaLink || slide.link || "/products",
   };
 }
 
 function bannerToSlide(banner) {
   return normalizeSlide({
-    img:      banner.desktopImage || "",
-    smimg:    banner.mobileImage  || banner.desktopImage || "",
-    title:    banner.title    || "",
+    img: banner.desktopImage || "",
+    smimg: banner.mobileImage || banner.desktopImage || "",
+    title: banner.title || "",
     subtitle: banner.subtitle || "",
-    ctaLink:  banner.link     || "/products",
+    ctaLink: banner.link || "/products",
   });
 }
 
@@ -42,18 +42,18 @@ function bannerToSlide(banner) {
 ───────────────────────────────────────────── */
 const FALLBACK_SLIDES = [
   {
-    img:      "/hero-slide-1.png",      // 1600 × 700
-    smimg:    "/hero-slide-sm1.png",    // 800  × 1000
-    title:    "Fresh From Our Farms",
+    img: "/hero-slide-1.png",      // 1600 × 700
+    smimg: "/hero-slide-sm1.png",    // 800  × 1000
+    title: "Fresh From Our Farms",
     subtitle: "Premium dairy products sourced directly from fresh farms, trusted by 50,000+ happy families",
-    ctaLink:  "/products",
+    ctaLink: "/products",
   },
   {
-    img:      "/hero-slide-2.png",      // 1600 × 700
-    smimg:    "/hero-slide-sm2.png",    // 800  × 1000
-    title:    "Pure. Fresh. Local.",
+    img: "/hero-slide-2.png",      // 1600 × 700
+    smimg: "/hero-slide-sm2.png",    // 800  × 1000
+    title: "Pure. Fresh. Local.",
     subtitle: "From creamy milk to artisan butter - experience dairy excellence at your doorstep",
-    ctaLink:  "/products",
+    ctaLink: "/products",
   },
 ];
 
@@ -61,12 +61,12 @@ const FALLBACK_SLIDES = [
    COMPONENT
 ───────────────────────────────────────────── */
 export default function HeroSection() {
-  const [api,          setApi]          = useState(null);
+  const [api, setApi] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [autoplay,     setAutoplay]     = useState(true);
-  const [isMobile,     setIsMobile]     = useState(false);
-  const [slides,       setSlides]       = useState(FALLBACK_SLIDES);
-  const [isLoading,    setIsLoading]    = useState(true);
+  const [autoplay, setAutoplay] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [slides, setSlides] = useState(FALLBACK_SLIDES);
+  const [isLoading, setIsLoading] = useState(true);
 
   const router = useRouter();
 
@@ -139,8 +139,8 @@ export default function HeroSection() {
             <CarouselItem key={index} className="p-0">
               <div
                 className="relative w-full cursor-pointer overflow-hidden
-                            aspect-[4/5] md:aspect-[16/5]"
-           
+                            aspect-[4/4] md:aspect-[16/4]"
+
                 onClick={() => handleSlideClick(slide.ctaLink)}
               >
                 <Image
@@ -151,7 +151,7 @@ export default function HeroSection() {
                              transition-transform duration-700 hover:scale-[1.02]"
                   priority={index === 0}
                   sizes="(max-width: 767px) 800px, 1600px"
-                  
+
                 />
               </div>
             </CarouselItem>
@@ -163,7 +163,7 @@ export default function HeroSection() {
                                      h-10 w-10 z-30
                                      bg-white/20 hover:bg-white/50 border-white/30
                                      text-white backdrop-blur-sm transition-all" />
-        <CarouselNext     className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex
+        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 hidden md:flex
                                      h-10 w-10 z-30
                                      bg-white/20 hover:bg-white/50 border-white/30
                                      text-white backdrop-blur-sm transition-all" />
@@ -175,11 +175,10 @@ export default function HeroSection() {
               key={index}
               onClick={() => api?.scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? "w-6 h-2 bg-white shadow-md"
-                  : "w-2 h-2 bg-white/50 hover:bg-white/80"
-              }`}
+              className={`rounded-full transition-all duration-300 ${index === currentSlide
+                ? "w-6 h-2 bg-white shadow-md"
+                : "w-2 h-2 bg-white/50 hover:bg-white/80"
+                }`}
             />
           ))}
         </div>
