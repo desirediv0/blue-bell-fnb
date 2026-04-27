@@ -46,14 +46,14 @@ function FeaturedProductsCarousel({ products, isLoading }) {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
         {[...Array(5)].map((_, i) => <ProductSkeleton key={i} />)}
       </div>
     );
   }
 
   return (
-    <div className="relative mt-8">
+    <div className="relative mt-3">
       <Carousel
         setApi={setApi}
         opts={{ align: "start", loop: true }}
@@ -141,7 +141,7 @@ export default function HomePageContent() {
     if (!loading && sectionProducts.length === 0) return null;
 
     return (
-      <section className={`py-5 md:py-6 my-3 md:my-4 ${bgClass}`}>
+      <section className={`py-3  my-2 ${bgClass}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <Headtext text={title} />
