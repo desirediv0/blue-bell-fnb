@@ -204,10 +204,7 @@ export function Navbar() {
               {/* Logo */}
               <Link href="/" className="flex items-center gap-2">
                 <Image src="/logo.png" alt="Logo" width={180} height={65} className="h-12 md:h-16 w-auto" priority />
-                <span className="text-sm md:text-xl font-bold text-[#175E9C] flex flex-col items-start leading-none">
-                  <p >BlueBell</p>
-                  <p>Foundation</p>
-                </span>
+                
               </Link>
 
               {/* Desktop Nav */}
@@ -508,10 +505,7 @@ function MobileMenu({ isOpen, onClose, user, isAuthenticated, categories, cartCo
         <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
           <div className="flex items-center gap-2">
             <Image src="/logo.png" alt="Logo" width={100} height={35} className="h-8 w-auto" />
-            <span className="text-sm md:text-2xl font-bold text-[#175E9C] flex flex-col items-start leading-none">
-              <p>BlueBell</p>
-              <p>Foundation</p>
-            </span>
+            
           </div>
           <button onClick={onClose} className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
             <FiX className="h-5 w-5" />

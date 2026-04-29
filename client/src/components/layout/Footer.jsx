@@ -56,16 +56,13 @@ export const Footer = () => {
           <div className="col-span-2">
             <Link href="/" className="inline-flex items-center gap-2 mb-6">
               <Image
-                src="/logo.png"
+                src="/logo-w.png"
                 alt="Blue Bell FNB"
                 width={130}
                 height={52}
                 className="h-16 w-auto rounded"
               />
-              <span className="text-sm md:text-xl font-bold text-[#1E7FBC] flex flex-col items-start leading-none">
-                <p>BlueBell</p>
-                <p>Foundation</p>
-              </span>
+          
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed mb-7 max-w-[260px]">
